@@ -7,3 +7,5 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 /env/
+/env/Lib/
+/env/Lib/site-packages/
