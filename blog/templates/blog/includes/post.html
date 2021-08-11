@@ -1,0 +1,16 @@
+{% load static %}
+<li >
+    <article class="post">
+        <a href="{% url 'post-detail-page' slug=latest_post.slug %}">
+            <img src="{%  static '/blog/images/'|add:latest_post.image %}" alt="{{ latest_post.title }}">
+            <div class="post__content">
+                <h3> {{ latest_post.title }} </h3>
+                <p>
+{#                    There is nothing like the views you get when hiking in the Mountains!#}
+{#                    I wasn't even prepared for what happened whilst I was enjoying the view!#}
+                    {{ latest_post.excerpt }}
+                </p>
+            </div>
+        </a>
+    </article>
+</li>
