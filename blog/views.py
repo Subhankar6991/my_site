@@ -1,6 +1,7 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from datetime import date
+from .models import Post
 
 posts_data = [
     {
@@ -71,8 +72,11 @@ posts_data = [
 
 # Create your views here.
 def starting_page(request):
-    sorted_posts = sorted(posts_data, key=lambda x : x['date'], reverse=True)
-    latest_posts = sorted_posts[:3]
+    print(request.GET.get('q','not found'))
+    latest_posts = Post.objects.all().order_by("-date")[:3]
+
+    # sorted_posts = sorted(posts_data, key=lambda x : x['date'], reverse=True)
+    # latest_posts = sorted_posts[:3]
     print(latest_posts)
     return render(request, "blog/index.html", context= {
         "latest_posts" : latest_posts
@@ -81,12 +85,13 @@ def starting_page(request):
 
 def posts(request):
     return render(request, "blog/all-posts.html", context= {
-        "all_posts" : posts_data
+        "all_posts" : Post.objects.all().order_by("-date")
     })
 
 
 def post_detail(request, slug):
-    next_post = next(post for post in posts_data if post['slug'] == slug)
+    identified_post = get_object_or_404(Post,slug=slug) #Post.objects.get(slug=slug)
+    # next_post = next(post for post in Post.objects.all() if post.get(slug='slug') == slug)
     return render(request, "blog/post-details.html", context={
-        "post_details" : next_post
+        "post_details" : identified_post
     })

@@ -25,6 +25,7 @@
       <excludeFolder url="file://$MODULE_DIR$/env/cx_Oracle-doc" />
       <excludeFolder url="file://$MODULE_DIR$/env/Include" />
       <excludeFolder url="file://$MODULE_DIR$/env/Scripts" />
+      <excludeFolder url="file://$MODULE_DIR$/env" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.9 (my_site)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

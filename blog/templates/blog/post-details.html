@@ -12,30 +12,24 @@
 {% block content %}
     <section id="summary">
         <h2>{{ post_details.title }}</h2>
+        <div>
+            {% for tag in post_details.tags.all %}
+                <span class="tag">{{ tag }}</span>
+            {% endfor %}
+            
+        </div>
         <article>
-            <img src="{% static 'blog/images/'|add:post_details.image %}" alt="">
-            <address>By {{ post_details.author }}</address>
+            <img src="{% static 'blog/images/'|add:post_details.image_name %}" alt="">
+            <address>
+                By <a href="mailto:{{ post_details.author.email_address}}" >
+                {{ post_details.author }}
+            </a>
+            </address>
             <div>Last Updated on <time>{{ post_details.date }}</time> </div>
         </article>
     </section>
 
     <main>
-{#        <p>#}
-{#            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus autem commodi#}
-{#        consequuntur debitis dicta ea expedita impedit iusto magnam modi molestias non omnis#}
-{#        possimus praesentium repellendus rerum tempora unde, voluptatibus.#}
-{#        </p>#}
-{#        <p>#}
-{#            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus autem commodi#}
-{#        consequuntur debitis dicta ea expedita impedit iusto magnam modi molestias non omnis#}
-{#        possimus praesentium repellendus rerum tempora unde, voluptatibus.#}
-{#        </p>#}
-{#        <p>#}
-{#            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus autem commodi#}
-{#        consequuntur debitis dicta ea expedita impedit iusto magnam modi molestias non omnis#}
-{#        possimus praesentium repellendus rerum tempora unde, voluptatibus.#}
-{#        </p>#}
-
         {{ post_details.content }}
     </main>
 {% endblock %}
